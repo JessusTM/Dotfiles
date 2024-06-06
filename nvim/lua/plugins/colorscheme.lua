@@ -1,23 +1,22 @@
 return {
-	{
-		"tiagovla/tokyodark.nvim",
-		priority = 1000,
-		config = function()
-			require("tokyodark").setup({
-				transparent_background = false, -- establece el fondo transparente
-				gamma = 1.00, -- ajusta el brillo del tema
-				styles = {
-					comments = { italic = true }, -- estilo para comentarios
-					keywords = { italic = true }, -- estilo para palabras clave
-					identifiers = { italic = true }, -- estilo para identificadores
-					functions = {}, -- estilo para funciones
-					variables = {}, -- estilo para variables
-				},
-				custom_highlights = function(highlights, palette) return {} end, -- extiende los resaltes
-				custom_palette = function(palette) return {} end, -- extiende la paleta
-				terminal_colors = true, -- habilita los colores del terminal
-			})
-			vim.cmd.colorscheme("tokyodark")
-		end,
-	},
+  "catppuccin/nvim",
+  lazy = true,
+  priority = 1000,
+  opts = function()
+    return {
+      flavour = "mocha", -- Set the flavour to mocha
+      term_colors = true,
+      integrations = {
+        nvimtree = true,
+        telescope = true,
+        dashboard = true,
+        gitsigns = true,
+        cmp = true,
+      },
+    }
+  end,
+  config = function(_, opts)
+    require("catppuccin").setup(opts)
+    vim.cmd("colorscheme catppuccin-mocha")
+  end,
 }

@@ -1,15 +1,14 @@
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
-	vim.fn.system({
-		"git",
-		"clone",
-		"--filter=blob:none",
-		"https://github.com/folke/lazy.nvim.git",
-		"--branch=stable",
-		lazypath,
-	})
+  vim.fn.system({
+    "git",
+    "clone",
+    "--filter=blob:none",
+    "https://github.com/folke/lazy.nvim.git",
+    "--branch=stable",
+    lazypath,
+  })
 end
-
 
 vim.opt.rtp:prepend(vim.env.LAZY or lazypath)
 
@@ -23,6 +22,7 @@ require("lazy").setup({
     { import = "lazyvim.plugins.extras.lang.tailwind" },
     { import = "lazyvim.plugins.extras.coding.copilot" },
     { import = "lazyvim.plugins.extras.util.mini-hipatterns" },
+    { "catppuccin/nvim", name = "catppuccin", priority = 1000 },
     {
       "simrat39/rust-tools.nvim",
       opts = {
@@ -34,9 +34,24 @@ require("lazy").setup({
           rust_analyzer = function(_, opts)
             require("lazyvim.util").on_attach(function(client, buffer)
               if client.name == "rust_analyzer" then
-                vim.keymap.set("n", "K", "<cmd>RustHoverActions<cr>", { buffer = buffer, desc = "Hover Actions (Rust)" })
-                vim.keymap.set("n", "<leader>cR", "<cmd>RustCodeAction<cr>", { buffer = buffer, desc = "Code Action (Rust)" })
-                vim.keymap.set("n", "<leader>dr", "<cmd>RustDebuggables<cr>", { buffer = buffer, desc = "Run Debuggables (Rust)" })
+                vim.keymap.set(
+                  "n",
+                  "K",
+                  "<cmd>RustHoverActions<cr>",
+                  { buffer = buffer, desc = "Hover Actions (Rust)" }
+                )
+                vim.keymap.set(
+                  "n",
+                  "<leader>cR",
+                  "<cmd>RustCodeAction<cr>",
+                  { buffer = buffer, desc = "Code Action (Rust)" }
+                )
+                vim.keymap.set(
+                  "n",
+                  "<leader>dr",
+                  "<cmd>RustDebuggables<cr>",
+                  { buffer = buffer, desc = "Run Debuggables (Rust)" }
+                )
               end
             end)
             local mason_registry = require("mason-registry")
@@ -108,14 +123,12 @@ require("lazy").setup({
         },
       },
     },
-    { import = "plugins" }, 
- },
+    { import = "plugins" },
+  },
   defaults = {
     lazy = false,
-    version = false, 
-    
+    version = false,
   },
-  install = { colorscheme = { "tokyonight", "habamax" } },
   checker = { enabled = true }, -- automatically check for plugin updates
   performance = {
     rtp = {
@@ -124,8 +137,8 @@ require("lazy").setup({
         "gzip",
         -- "matchit",
         -- "matchparen",
-	"netrwPlugin",
-	"rplugin",
+        "netrwPlugin",
+        "rplugin",
         "tarPlugin",
         "tohtml",
         "tutor",
