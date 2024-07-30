@@ -1,2 +1,2 @@
 # Neovim
-Configuración de Neovim
+Dotfiles
