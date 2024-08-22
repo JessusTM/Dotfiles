@@ -2,12 +2,12 @@ return {
   {
     "echasnovski/mini.hipatterns",
     event = "BufReadPre",
-    opts = {},
+    opts  = {},
   },
   {
     "telescope.nvim",
-    priority = 1000,
-    dependencies = {
+    priority      = 1000,
+    dependencies  = {
       {
         "nvim-telescope/telescope-fzf-native.nvim",
         build = "make",
@@ -20,8 +20,8 @@ return {
         function()
           local builtin = require("telescope.builtin")
           builtin.find_files({
-            no_ignore = false,
-            hidden = true,
+            no_ignore   = false,
+            hidden      = true,
           })
         end,
         desc = "Lists files in your current working directory, respects .gitignore",
@@ -76,51 +76,51 @@ return {
           end
 
           telescope.extensions.file_browser.file_browser({
-            path = "%:p:h",
-            cwd = telescope_buffer_dir(),
-            respect_gitignore = false,
-            hidden = true,
-            grouped = true,
-            previewer = false,
-            initial_mode = "normal",
-            layout_config = { height = 40 },
+            path                = "%:p:h",
+            cwd                 = telescope_buffer_dir(),
+            respect_gitignore   = false,
+            hidden              = true,
+            grouped             = true,
+            previewer           = false,
+            initial_mode        = "normal",
+            layout_config       = { height = 40 },
           })
         end,
         desc = "Open File Browser with the path of the current buffer",
       },
     },
     config = function(_, opts)
-      local telescope = require("telescope")
-      local actions = require("telescope.actions")
-      local fb_actions = require("telescope").extensions.file_browser.actions
+      local telescope     = require("telescope")
+      local actions       = require("telescope.actions")
+      local fb_actions    = require("telescope").extensions.file_browser.actions
 
       opts.defaults = vim.tbl_deep_extend("force", opts.defaults, {
-        wrap_results = true,
-        layout_strategy = "horizontal",
-        layout_config = { prompt_position = "top" },
-        sorting_strategy = "ascending",
-        winblend = 0,
-        mappings = {
+        wrap_results      = true,
+        layout_strategy   = "horizontal",
+        layout_config     = { prompt_position = "top" },
+        sorting_strategy  = "ascending",
+        winblend          = 0,
+        mappings          = {
           n = {},
         },
       })
       opts.pickers = {
         diagnostics = {
-          theme = "ivy",
-          initial_mode = "normal",
-          layout_config = {
-            preview_cutoff = 9999,
+          theme             = "ivy",
+          initial_mode      = "normal",
+          layout_config     = {
+            preview_cutoff  = 9999,
           },
         },
       }
       opts.extensions = {
-        file_browser = {
-          theme = "dropdown",
-          hijack_netrw = true,
-          mappings = {
+        file_browser    = {
+          theme         = "dropdown",
+          hijack_netrw  = true,
+          mappings      = {
             ["n"] = {
-              ["N"] = fb_actions.create,
-              ["h"] = fb_actions.goto_parent_dir,
+              ["N"]     = fb_actions.create,
+              ["h"]     = fb_actions.goto_parent_dir,
               ["<C-u>"] = function(prompt_bufnr)
                 for i = 1, 10 do
                   actions.move_selection_previous(prompt_bufnr)
