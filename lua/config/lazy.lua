@@ -45,6 +45,11 @@ require("lazy").setup({
       init = function() vim.g.barbar_auto_setup = false end,
       version = '^1.0.0',
     },
+     {
+  'stevearc/conform.nvim',
+  branch = 'nvim-0.9',
+  opts = {},
+},
     {
       "nvim-java/nvim-java",
       dependencies = {
@@ -53,6 +58,30 @@ require("lazy").setup({
       config = function()
         require('java').setup() -- Configura nvim-java
         require('lspconfig').jdtls.setup({}) -- Configura jdtls
+      end,
+    },
+    {
+      "mfussenegger/nvim-dap",
+      config = function()
+      -- Configuración específica para nvim-dap, sin llamar a setup()
+      local dap = require("dap")
+
+      -- Configuración para el adaptador de lenguaje específico, si es necesario
+      -- Aquí puedes agregar adaptadores y configuraciones
+      dap.adapters.java = {
+        type = "server",
+        host = "127.0.0.1",
+        port = 5005,
+      }
+
+      dap.configurations.java = {
+        {
+          type = "java",
+          request = "launch",
+          name = "Debug Java Program",
+          mainClass = "${file}",
+        },
+      }
       end,
     },
   },

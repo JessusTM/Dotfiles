@@ -1,5 +1,6 @@
 require("config.lazy")
 require("config.lualine")
+
 if vim.loader then
   vim.loader.enable()
 end

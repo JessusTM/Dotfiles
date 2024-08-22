@@ -14,6 +14,7 @@ return {
         },
         opts = { skip = true },
       })
+
       local focused = true
       vim.api.nvim_create_autocmd("FocusGained", {
         callback = function()
@@ -33,6 +34,15 @@ return {
         },
         view = "notify_send",
         opts = { stop = false },
+      })
+
+      table.insert(opts.routes, {
+        filter = {
+          event = "lsp",
+          kind = "progress",
+          find = "jdtls",
+        },
+        opts = { skip = true },
       })
 
       opts.commands = {
@@ -115,6 +125,7 @@ return {
       "nvim-lua/plenary.nvim",
     },
   },
+
   {
     "kristijanhusak/vim-dadbod-ui",
     dependencies = {
@@ -137,6 +148,7 @@ return {
       },
     },
   },
+
   {
     "nvim-tree/nvim-tree.lua",
     config = function()
@@ -197,3 +209,4 @@ return {
     end,
   },
 }
+
