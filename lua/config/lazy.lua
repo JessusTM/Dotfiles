@@ -29,59 +29,50 @@ require("lazy").setup({
     { import = "lazyvim.plugins.extras.util.mini-hipatterns" },
     { import = "plugins" },
     {
-      'kyazdani42/nvim-web-devicons',
+      "kyazdani42/nvim-web-devicons",
       lazy = true,
     },
     {
-      'nvim-lualine/lualine.nvim',
-      dependencies = { 'nvim-tree/nvim-web-devicons' }
+      "nvim-lualine/lualine.nvim",
+      dependencies = { "nvim-tree/nvim-web-devicons" },
     },
     {
-      'romgrk/barbar.nvim',
-      dependencies = {
-        'lewis6991/gitsigns.nvim', -- OPTIONAL: for git status
-        'nvim-tree/nvim-web-devicons', -- OPTIONAL: for file icons
-      },
-      init = function() vim.g.barbar_auto_setup = false end,
-      version = '^1.0.0',
+      "stevearc/conform.nvim",
+      branch = "nvim-0.9",
+      opts = {},
     },
-     {
-  'stevearc/conform.nvim',
-  branch = 'nvim-0.9',
-  opts = {},
-},
     {
       "nvim-java/nvim-java",
       dependencies = {
-        'nvim-lspconfig',
+        "nvim-lspconfig",
       },
       config = function()
-        require('java').setup() -- Configura nvim-java
-        require('lspconfig').jdtls.setup({}) -- Configura jdtls
+        require("java").setup() -- Configura nvim-java
+        require("lspconfig").jdtls.setup({}) -- Configura jdtls
       end,
     },
     {
       "mfussenegger/nvim-dap",
       config = function()
-      -- Configuración específica para nvim-dap, sin llamar a setup()
-      local dap = require("dap")
+        -- Configuración específica para nvim-dap, sin llamar a setup()
+        local dap = require("dap")
 
-      -- Configuración para el adaptador de lenguaje específico, si es necesario
-      -- Aquí puedes agregar adaptadores y configuraciones
-      dap.adapters.java = {
-        type = "server",
-        host = "127.0.0.1",
-        port = 5005,
-      }
+        -- Configuración para el adaptador de lenguaje específico, si es necesario
+        -- Aquí puedes agregar adaptadores y configuraciones
+        dap.adapters.java = {
+          type = "server",
+          host = "127.0.0.1",
+          port = 5005,
+        }
 
-      dap.configurations.java = {
-        {
-          type = "java",
-          request = "launch",
-          name = "Debug Java Program",
-          mainClass = "${file}",
-        },
-      }
+        dap.configurations.java = {
+          {
+            type = "java",
+            request = "launch",
+            name = "Debug Java Program",
+            mainClass = "${file}",
+          },
+        }
       end,
     },
   },
@@ -104,4 +95,3 @@ require("lazy").setup({
     },
   },
 })
-
