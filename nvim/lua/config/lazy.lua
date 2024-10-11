@@ -42,23 +42,25 @@ require("lazy").setup({
       opts = {},
     },
     {
+      "mrcjkb/rustaceanvim",
+      version = "^5",
+      lazy = false,
+    },
+    {
       "nvim-java/nvim-java",
       dependencies = {
         "nvim-lspconfig",
       },
       config = function()
-        require("java").setup() -- Configura nvim-java
-        require("lspconfig").jdtls.setup({}) -- Configura jdtls
+        require("java").setup()
+        require("lspconfig").jdtls.setup({})
       end,
     },
     {
       "mfussenegger/nvim-dap",
       config = function()
-        -- Configuración específica para nvim-dap, sin llamar a setup()
         local dap = require("dap")
 
-        -- Configuración para el adaptador de lenguaje específico, si es necesario
-        -- Aquí puedes agregar adaptadores y configuraciones
         dap.adapters.java = {
           type = "server",
           host = "127.0.0.1",
